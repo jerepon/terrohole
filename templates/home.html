@@ -1,0 +1,29 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+{% for p in posts %}
+<div class="border border-secondary border-3 mb-5">
+    <h2>{{p.title}}</h2>
+    {% if p.image %}
+        <img src="{{ p.image.url }}" alt="{{ p.title }}" class="img-fluid" style="max-width: 400px; max-height: 400px;">
+    {% endif %}
+    <p>{{p.text}}</p>
+    {% for c in p.comment_set.all %}
+        <p>{{c.user.username}} escribio: {{c.text}}</p> 
+    {% endfor %}
+    {% if request.user.is_authenticated and request.user == p.user %}
+        <a href="/post/{{p.id}}">Editar</a>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+        <form method="post" action="/comment/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" value="{{p.id}}" name="post">
+            <div class="form-group my-3">
+                <textarea  class="form-control" name="text" placeholder="Escribe un comentario"></textarea>
+            </div>
+           
+            <button class="btn btn-primary" type="submit">Enviar comentario</button>
+        </form>
+    {% endif %}
+{% endfor %}
+{% endblock %}

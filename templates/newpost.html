@@ -1,0 +1,32 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+<h1>Nuevo Post</h1>
+<form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    {% if post is not None %}
+        <input type="hidden" value="{{post.id}}" name="id">
+    {% endif %}    
+
+    <div class="form-group my-3">
+        <label>Titulo</label>
+        <input type="text" class="form-control" name="title" placeholder="Titulo"
+        {% if post is not None %}
+            value="{{post.title}}"
+        {%  endif %}>
+    </div>
+
+    <div class="form-group my-3">
+        <label>Texto</label>
+        <textarea  class="form-control" name="text">{% if post is not None %}{{post.text}}{%  endif %}</textarea>
+    </div>
+
+    <div class="form-group my-3">
+        <label>Imagen</label>
+        <input type="file" name="image">
+    </div>
+
+    <button class="btn btn-primary" type="submit">Enviar</button>
+</form>
+{% endblock %}

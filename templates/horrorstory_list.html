@@ -1,0 +1,16 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+  <h1>Historias de Terror</h1>
+  <ul>
+    {% for story in object_list %}
+      <li>
+        <h2>{{ story.title }}</h2>
+        <p>{{ story.content }}</p>
+        <p>Por: {{ story.author }}</p>
+      </li>
+    {% empty %}
+      <li>No hay historias disponibles</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,1 @@
+web: gunicorn terrohole.wsgi --log-file -

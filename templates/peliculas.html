@@ -1,0 +1,25 @@
+{% extends "layouts/main.html" %}
+{% block content %}
+<div class="cartapeli container" >
+  <div class="row">
+    <div class="card-deck">
+      {% for pelicula in peliculas %}
+      <div class="justify-content-center col-sm-4 " >
+        <div class="card mb-4 box-shadow"style="background-color:#7F0700">
+          <img class="card-img-top" src="{{ pelicula.imagen.url }}" alt="{{ pelicula.titulo }}" title="{{ pelicula.descripcion }}" />
+          <div class="card-body" >
+            <h5 class="card-title" style="color:white">{{ pelicula.titulo }}</h5>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <a href="{{ pelicula.url }}" class="btn btn-sm btn-outline-secondary">Ver película</a>
+              </div>
+              <small class="text-muted">{{ pelicula.duracion }} min</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
