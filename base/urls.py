@@ -20,12 +20,12 @@ urlpatterns =[
     path('comment/',views.comment),
     path('post/<int:id>',views.post),
     path('register',views.registerpage),
-    path('login',views.loginpage),
-    path('logout',views.logoutpage),
+    path('login/',views.loginpage),
+    path('logout/',views.logoutpage),
     path('contact/', contact_view, name='contact'),
     path('horrorstory/', HorrorStoryListView.as_view(), name='horrorstory_list'),
-    path('api/horrorstory/', HorrorStoryList.as_view(), name='horrorstory-list'),
-    path('api/horrorstory/<int:pk>/', HorrorStoryDetail.as_view(), name='horrorstory-detail'),
+    path('api/horrorstory', HorrorStoryList.as_view(), name='horrorstory-list'),
+    path('api/horrorstory/<int:pk>', HorrorStoryDetail.as_view(), name='horrorstory-detail'),
     
     
    
